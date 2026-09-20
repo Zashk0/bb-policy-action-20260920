@@ -1,0 +1,7 @@
+name: Policy Alias Marker
+description: Inert marker used only for an owned repository policy validation
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: echo "POLICY_ALIAS_MARKER=PRE_TRANSFER"
