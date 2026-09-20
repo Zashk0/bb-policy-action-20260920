@@ -4,4 +4,4 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run: echo "POLICY_ALIAS_MARKER=PRE_TRANSFER"
+      run: echo "POLICY_ALIAS_MARKER=POST_TRANSFER_EXTERNAL"
