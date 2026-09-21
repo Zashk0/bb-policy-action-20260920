@@ -4,4 +4,11 @@ runs:
   using: composite
   steps:
     - shell: bash
-      run: echo "POLICY_ALIAS_MARKER=POST_TRANSFER_EXTERNAL_V2"
+      run: |
+        actual="$(printf '%s' "$POLICY_ALIAS_SENTINEL" | sha256sum | cut -d' ' -f1)"
+        if [ "$actual" != "4dae32ca1064781db076e5ec52c1d6b858a227c85ddabfb72ba2b6760b9852bf" ]; then
+          echo "CANARY_HASH_MATCH=false"
+          exit 1
+        fi
+        echo "CANARY_HASH_MATCH=true"
+        echo "POLICY_ALIAS_MARKER=POST_TRANSFER_EXTERNAL_SECRET_CANARY"
